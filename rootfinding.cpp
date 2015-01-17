@@ -518,9 +518,6 @@ float rtcomp(float a, float b, int num, int nth)
 {
      float modulus=0,argument=0,part,flag=0,temp=0;
      modulus = sqrt(pow(a,2)+pow(b,2));
-     //when both the real and complex is positive or negative
-     if(((a>=0)&&(b>=0))||((a<=0)&&(b<=0)))
-     {
        if((a<0)||(b<0))
        {
               a=-a;
@@ -552,41 +549,5 @@ float rtcomp(float a, float b, int num, int nth)
         real = -real;
         
        }          
-     }
-//     when one is positive and other is negative
-     if(((a>0)&&(b<0))||((a<0)&&(b>0)))
-     {
-       a=a/modulus;
-       b=b/modulus;
-       if(a<0)
-       {               
-               flag=1;
-       }
-              argument=asin(b);              
-       if(nth==2)
-       {
-                 part=sqrt(modulus);
-       };
-       if(nth==3)
-       {
-                 part=cbrt(modulus);
-       };
-       
-       real= part * cos((argument+2*(num-1)*PI)/nth);
-       complex= part * sin((argument+2*(num-1)*PI)/nth);
-       if((flag==1)&&(nth==2))
-       {
-        temp = real;
-        real = -complex;
-        complex = temp;
-        }          
-        if((flag==1)&&(nth==3))
-       {
-        complex=-complex;
-        real = -real;
-        
-       }          
      
-     }
-    
 }
