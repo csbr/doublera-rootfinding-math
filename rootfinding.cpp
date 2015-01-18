@@ -289,51 +289,61 @@ float cuberoot(float a, float b,float c,float d)
                           }
               cri = sqrt(-r);
               crsq = sqrt(pow(crcons,2)+pow(cri,2));
-             
-              crcons = crcons/crsq;
-              cri = cri/crsq;
-             
-              crconsa = acos(crcons);
-              cria = asin(cri);
-              cout<<"\nreal angle ="<<crconsa;
-              cout<<"\ncomplex angle ="<<cria;
-              if (cria == crconsa) cout<<"\nAngle is: "<<cria;
-             
-              if(flag==1)
-              {
-                         crsq = cbrt(-crsq);
-                         }
-              else
-              {
-                  crsq = cbrt(crsq);
-                  }
-              crcons = crsq*cos(cria/3);
-              cri = crsq*sin(cria/3);
-              crconsb = crsq*cos(cria/3);
-              crib = -crsq*sin(cria/3);
-              cuberoot1r=(-b/(3*a)) + crcons+crconsb;
-              cuberoot1c=cri+crib;
-              cout<<"\nThe root1 is :"<<cuberoot1r<<" + i "<<cuberoot1c;
-             
-              crcons2 = -.5*crcons - cri*sqrt(3)/2;
-              cri2 = crcons*sqrt(3)/2 - cri/2;
-             
-              crcons2b = -.5*crconsb + crib*sqrt(3)/2;
-              cri2b = -crconsb*sqrt(3)/2 - crib/2;
-              cuberoot2r=(-b/(3*a)) + crcons2+crcons2b;
-              cuberoot2c=cri2+cri2b;
-              cout<<"\nThe root2 is :"<<cuberoot2r<<" + i "<<cuberoot2c;
-             
-              crcons3 = -.5*crcons + cri*sqrt(3)/2;
-              cri3 = -crcons*sqrt(3)/2 - cri/2;
-             
-              crcons3b = -.5*crconsb - crib*sqrt(3)/2;
-              cri3b = crconsb*sqrt(3)/2 - crib/2;
-              cuberoot3r=(-b/(3*a)) + crcons3+crcons3b;
-              cuberoot3c=cri3+cri3b;
-              cout<<"\nThe root3 is :"<<cuberoot3r<<" + i "<<cuberoot3c;
+             if ((crcons==0)&&(cri==0))
+             {
+                  cuberoot1r=0;
+                  cuberoot1c=0;
+                  cuberoot2r=0;
+                  cuberoot2c=0;
+                  cuberoot3r=0;
+                  cuberoot3c=0;
+              }  
+                else
+             {
+                  crcons = crcons/crsq;
+                  cri = cri/crsq;
+                 
+                  crconsa = acos(crcons);
+                  cria = asin(cri);
+                  cout<<"\nreal angle ="<<crconsa;
+                  cout<<"\ncomplex angle ="<<cria;
+                  if (cria == crconsa) cout<<"\nAngle is: "<<cria;
+                 
+                  if(flag==1)
+                  {
+                             crsq = cbrt(-crsq);
+                             }
+                  else
+                  {
+                      crsq = cbrt(crsq);
+                      }
+                  crcons = crsq*cos(cria/3);
+                  cri = crsq*sin(cria/3);
+                  crconsb = crsq*cos(cria/3);
+                  crib = -crsq*sin(cria/3);
+                  cuberoot1r=(-b/(3*a)) + crcons+crconsb;
+                  cuberoot1c=cri+crib;
+                  cout<<"\nThe root1 is :"<<cuberoot1r<<" + i "<<cuberoot1c;
+                 
+                  crcons2 = -.5*crcons - cri*sqrt(3)/2;
+                  cri2 = crcons*sqrt(3)/2 - cri/2;
+                 
+                  crcons2b = -.5*crconsb + crib*sqrt(3)/2;
+                  cri2b = -crconsb*sqrt(3)/2 - crib/2;
+                  cuberoot2r=(-b/(3*a)) + crcons2+crcons2b;
+                  cuberoot2c=cri2+cri2b;
+                  cout<<"\nThe root2 is :"<<cuberoot2r<<" + i "<<cuberoot2c;
+                 
+                  crcons3 = -.5*crcons + cri*sqrt(3)/2;
+                  cri3 = -crcons*sqrt(3)/2 - cri/2;
+                 
+                  crcons3b = -.5*crconsb - crib*sqrt(3)/2;
+                  cri3b = crconsb*sqrt(3)/2 - crib/2;
+                  cuberoot3r=(-b/(3*a)) + crcons3+crcons3b;
+                  cuberoot3c=cri3+cri3b;
+                  cout<<"\nThe root3 is :"<<cuberoot3r<<" + i "<<cuberoot3c;
               }
-
+              }
               else
               {
               r2 = cbrt((-q/2)+ sqrt(r));
@@ -517,6 +527,13 @@ float quarticroot(float a,float b,float c, float d,float e)
 float rtcomp(float a, float b, int num, int nth)
 {
      float modulus=0,argument=0,part,flag=0,temp=0;
+     if((a==0)&&(b==0))
+     {
+                       real=0;
+                       complex=0;
+     }
+      else                 
+     {
      modulus = sqrt(pow(a,2)+pow(b,2));
        if((a<0)||(b<0))
        {
@@ -547,7 +564,6 @@ float rtcomp(float a, float b, int num, int nth)
        {
         complex=-complex;
         real = -real;
-        
-       }          
-     
-}
+        } 
+       }
+     }
