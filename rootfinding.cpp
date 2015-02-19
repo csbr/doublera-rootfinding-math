@@ -30,14 +30,15 @@ float quarticroot1r,quarticroot2r,quarticroot3r,quarticroot4r,/*the real part of
 quarticroot1c,quarticroot2c,quarticroot3c,quarticroot4c; /*the complex part of four quartic roots*/
 //this function is used to find the solution of a quartic equation
 float quarticroot(float,float,float,float,float);
-/*
+
 //this is used to get the coefficients of quintic and pass to quintic function
 void inputrootquintic(void);
 //this function is used to frame a quintic equation from the roots
 float quintic(float,float,float,float,float);
+
 float quinticroot1r,quinticroot2r,quinticroot3r,quinticroot4r,quinticroot5r,//the real part of five quintic roots 
 quinticroot1c,quinticroot2c,quinticroot3c,quinticroot4c,quinticroot5c; //the complex part of five quintic roots
-*/
+
 //this function is used to find the solution of a quintic equation
 float quinticroot(float,float,float,float,float,float);
 
@@ -58,8 +59,8 @@ int main(void)
     cout<<"\n2. Find roots for cubic.";
     cout<<"\n3. Frame an equation in biquadratic.";
     cout<<"\n4. Find roots for biquadratic.";
-    /*cout<<"\n5. Frame an equation in biquadratic.";
-    cout<<"\n6. Find roots for biquadratic.";*/
+    cout<<"\n5. Frame an equation in quintic.";
+    cout<<"\n6. Find roots for quintic.";
     cout<<"\n7. Find quadratic root of complex number.";
     cout<<"\n8. Find cubic root of complex number.";
     
@@ -80,12 +81,12 @@ int main(void)
                   case 4: cout<<"\nInput the constants of the quartic equation.\n ";
                   inputquartic();
                   break;
-                  /*case 5: cout<<"\nEnter the roots of the quintic equation.";
+                  case 5: cout<<"\nEnter the roots of the quintic equation.";
                   inputrootquintic();
                   break;
                   case 6: cout<<"\nInput the constants of the quintic equation.\n ";
-                  //inputquintic();
-                  break;*/
+                  inputquintic();
+                  break;
                   case 7:cout<<"\n";
                   findrootcomplexquadratic();
                   break;
@@ -178,7 +179,7 @@ void inputquartic(void)
     cout<<"Want to do more (y/n): ";
     cin>>ch;
 }
-}/*
+}
 void inputquintic(void)
 {
     char ch='y';
@@ -201,7 +202,7 @@ void inputquintic(void)
     cout<<"Want to do more (y/n): ";
     cin>>ch;
 }
-}*/
+}
 void inputrootcube(void)
 {
     char ch='y';
@@ -237,7 +238,7 @@ void inputrootquartic(void)
     cout<<"Want to do more (y/n): ";
     cin>>ch;
 }
-}/*
+}
 void inputrootquintic(void)
 {
     char ch='y';
@@ -258,7 +259,7 @@ void inputrootquintic(void)
     cout<<"Want to do more (y/n): ";
     cin>>ch;
 }
-}*/
+}
 float cube(float a,float b,float c)
 {
       float sum,prod2,prod3;
@@ -707,7 +708,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                     cout<<"y^5+("<<abs(p);
                     };
       
-      q = (((-3*b/5*a)(c/a - (2*b*b)/(5*a*a))+((d/a - (2*b*b*b)/(25*a*a*a)));
+      q = (((-3*b/5*a)*(c/a - (2*b*b)/(5*a*a)))+(d/a - (2*b*b*b)/(25*a*a*a)));
       if (q<0)
       {
                 cout<<")y^3-("<<abs(q);
@@ -716,7 +717,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                 {
                     cout<<")y^3+("<<abs(q);
                     };
-      r = ((3*b*b/(25*a*a))*(c/a - (2*b*b)/(5*a*a))+((-2*b/(5*a))*(d/a - (2*b*b*b)/(25*a*a*a))+(e/a - (b*b*b*b)/(125*a*a*a*a)));
+      r = (((3*b*b/(25*a*a))*(c/a - (2*b*b)/(5*a*a)))+((-2*b/(5*a))*(d/a - (2*b*b*b)/(25*a*a*a)))+(e/a - (b*b*b*b)/(125*a*a*a*a)));
       if (r<0)
       {
                 cout<<")y^2-("<<abs(q)<<")";
@@ -725,7 +726,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                 {
                     cout<<")y^2+("<<abs(q)<<")";
                     };
-      s = ((-1*b*b*b/(125*a*a*a))*(c/a - (2*b*b)/(5*a*a))+((b*b/(25*a*a))*(d/a - (2*b*b*b)/(25*a*a*a))+(e/a - (b*b*b*b)/(125*a*a*a*a))(-b/5a)+(f/a - (b*b*b*b*b)/(5*5*5*5*5*a*a*a*a*a)));
+      s = (((-1*b*b*b)/(125*a*a*a))*(c/a - (2*b*b)/(5*a*a)))+((b*b/(25*a*a))*(d/a - (2*b*b*b)/(25*a*a*a)))+(e/a - (b*b*b*b)/(125*a*a*a*a))*(-1*b/5*a)+(f/a - (b*b*b*b*b)/(5*5*5*5*5*a*a*a*a*a));
       if (s<0)
       {
                 cout<<")y^2-("<<abs(q)<<")";
@@ -737,7 +738,13 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
       
       cout<<"\n===================================\n";              
       cout<<"\nEntering quarticroot.";
-      cuberoot(1,p/2,(p*p-4*r)/16,-q*q/64);
+      float k,l,m,n;
+      m = (9*s + p*q )/(6*q);
+      n = (r/2 - (p*p)/9 + (p/3)*m)/4;
+      l= -1*q/6;
+      k = -1*p/3;
+      k = sqrt(k-2*m);
+      quarticroot(1,-1*k,m,-1*l,n);
       cout<<"\nExiting quarticroot.";
       cout<<"\nEntering quinticroot.";
       /*
