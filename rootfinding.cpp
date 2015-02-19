@@ -348,10 +348,6 @@ float cuberoot(float a, float b,float c,float d)
       r = pow((q/2),2)+ pow((p/3),3);
       if(r<0)
              {                    
-              cout<<"\ncomplex";
-              cout<<"\nl^3 = "<<(-q/2)<<" +i "<<sqrt(-r);
-              cout<<"\nm^3 = "<<(-q/2)<<" -i "<<sqrt(-r);
-             
               if(-q<0)
               {
                       crcons = q/2;
@@ -379,10 +375,7 @@ float cuberoot(float a, float b,float c,float d)
                  
                   crconsa = acos(crcons);
                   cria = asin(cri);
-                  cout<<"\nreal angle ="<<crconsa;
-                  cout<<"\ncomplex angle ="<<cria;
-                  if (cria == crconsa) cout<<"\nAngle is: "<<cria;
-                 
+                  
                   if(flag==1)
                   {
                              crsq = cbrt(-crsq);
@@ -708,7 +701,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                     cout<<"y^5+("<<abs(p);
                     };
       
-      q = (((-3*b/5*a)*(c/a - (2*b*b)/(5*a*a)))+(d/a - (2*b*b*b)/(25*a*a*a)));
+      q = ((-3*b/5*a)*p) +(d/a - (2*b*b*b)/(25*a*a*a));
       if (q<0)
       {
                 cout<<")y^3-("<<abs(q);
@@ -720,44 +713,33 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
       r = (((3*b*b/(25*a*a))*(c/a - (2*b*b)/(5*a*a)))+((-2*b/(5*a))*(d/a - (2*b*b*b)/(25*a*a*a)))+(e/a - (b*b*b*b)/(125*a*a*a*a)));
       if (r<0)
       {
-                cout<<")y^2-("<<abs(q)<<")";
+                cout<<")y^2-("<<abs(r);
                 }
                 else
                 {
-                    cout<<")y^2+("<<abs(q)<<")";
+                    cout<<")y^2+("<<abs(r);
                     };
       s = (((-1*b*b*b)/(125*a*a*a))*(c/a - (2*b*b)/(5*a*a)))+((b*b/(25*a*a))*(d/a - (2*b*b*b)/(25*a*a*a)))+(e/a - (b*b*b*b)/(125*a*a*a*a))*(-1*b/5*a)+(f/a - (b*b*b*b*b)/(5*5*5*5*5*a*a*a*a*a));
       if (s<0)
       {
-                cout<<")y-("<<abs(q)<<")";
+                cout<<")y-("<<abs(s)<<")";
                 }
                 else
                 {
-                    cout<<")y+("<<abs(q)<<")";
+                    cout<<")y+("<<abs(s)<<")";
                     };
       
       cout<<"\n===================================\n";              
       cout<<"\nEntering quarticroot.";
       float k,l,m,n;
-      m = (9*s + p*q )/(6*q);
-      n = (r/2 - (p*p)/9 + (p/3)*m)/4;
+      m = (q!=0)?(9*s + p*q )/(6*q):0;
+      n = ((r/2 - (p*p)/9 + (p/3)*m)/4);
       l= -1*q/6;
       k = -1*p/3;
-      k = sqrt(k-2*m);
+      k = sqrt(k+2*m);
       quarticroot(1,-1*k,m,-1*l,n);
       cout<<"\nExiting quarticroot.";
       cout<<"\nEntering quinticroot.";
-      /*
-               complexrootcompute(cuberoot1r,cuberoot1c,1,2);        
-               rq41r=real;        
-               rq41c=complex;
-               complexrootcompute(cuberoot2r,cuberoot2c,1,2);        
-               rq42r=real;        
-               rq42c=complex;
-               complexrootcompute(cuberoot3r,cuberoot3c,1,2);        
-               rq43r=real;        
-               rq43c=complex;
-               */
       quinticroot1r = -b/(5*a) - quarticroot1r + quarticroot2r + quarticroot3r + quarticroot4r;
       quinticroot1c = -b/(5*a) - quarticroot1c + quarticroot2c + quarticroot3c + quarticroot4c;
       quinticroot2r = -b/(5*a) + quarticroot1r - quarticroot2r + quarticroot3r + quarticroot4r;
