@@ -641,11 +641,11 @@ float quintic(float a,float b,float c,float d, float e)
       prod5 = a*b*c*d*e;
       if (prod5<0)
       {
-                cout<<"x^2-"<<abs(prod5);
+                cout<<"x+"<<abs(prod5);
                 }
                 else
                 {
-                    cout<<"x^2+"<<abs(prod5);
+                    cout<<"x-"<<abs(prod5);
                     };
       
       return 0;      
@@ -729,11 +729,11 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
       s = (((-1*b*b*b)/(125*a*a*a))*(c/a - (2*b*b)/(5*a*a)))+((b*b/(25*a*a))*(d/a - (2*b*b*b)/(25*a*a*a)))+(e/a - (b*b*b*b)/(125*a*a*a*a))*(-1*b/5*a)+(f/a - (b*b*b*b*b)/(5*5*5*5*5*a*a*a*a*a));
       if (s<0)
       {
-                cout<<")y^2-("<<abs(q)<<")";
+                cout<<")y-("<<abs(q)<<")";
                 }
                 else
                 {
-                    cout<<")y^2+("<<abs(q)<<")";
+                    cout<<")y+("<<abs(q)<<")";
                     };
       
       cout<<"\n===================================\n";              
