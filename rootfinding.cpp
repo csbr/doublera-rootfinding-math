@@ -416,11 +416,6 @@ float cuberoot(float a, float b,float c,float d)
               r2 = cbrt((-q/2)+ sqrt(r));
               r3 = cbrt((-q/2)- sqrt(r));
               
-              cout<<"\nReal";
-              cout<<"\nl = "<<r2;
-              cout<<"\nm = "<<r3;
-              
-              
               crcons = r2;
               crconsb = r3;
               cuberoot1r=(-b/(3*a)) + crcons+crconsb;
@@ -646,7 +641,6 @@ float quintic(float a,float b,float c,float d, float e)
 float quinticroot(float a,float b,float c, float d,float e, float f)
 {
      float p,q,r,s;
-     float rq41r,rq41c,rq42r,rq42c,rq43r,rq43c,rq44r,rq44c;
      
      if (b<0)
       {
@@ -691,7 +685,12 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
        
      cout<<"\n=================================\n";
       cout<<"\nThe reduced equation is ";
-      p = (c/a - 2*b*b/(5*a*a));
+      float w,x,y,z;
+      w = (c/a - 2*b*b/(5*a*a));
+      x = (d/a - 2*b*b*b/(25*a*a*a));
+      y = (e/a - pow(b,4)/(125*pow(a,4)));
+      z = (f/a - pow(b,5)/(pow(5.0,5)*pow(a,5)));
+      p = w;
       if (p<0)
       {
                 cout<<"\ny^5-("<<abs(p);
@@ -701,7 +700,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                     cout<<"y^5+("<<abs(p);
                     };
       
-      q = ((-3*b/5*a)*p) +(d/a - (2*b*b*b)/(25*a*a*a));
+      q = ((-3*b/5*a)*w) + x;
       if (q<0)
       {
                 cout<<")y^3-("<<abs(q);
@@ -710,7 +709,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                 {
                     cout<<")y^3+("<<abs(q);
                     };
-      r = (((3*b*b/(25*a*a))*(c/a - (2*b*b)/(5*a*a)))+((-2*b/(5*a))*(d/a - (2*b*b*b)/(25*a*a*a)))+(e/a - (b*b*b*b)/(125*a*a*a*a)));
+      r = ((3*b*b/(25*a*a))*w)+((-2*b/(5*a))*x) + y;
       if (r<0)
       {
                 cout<<")y^2-("<<abs(r);
@@ -719,7 +718,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                 {
                     cout<<")y^2+("<<abs(r);
                     };
-      s = (((-1*b*b*b)/(125*a*a*a))*(c/a - (2*b*b)/(5*a*a)))+((b*b/(25*a*a))*(d/a - (2*b*b*b)/(25*a*a*a)))+(e/a - (b*b*b*b)/(125*a*a*a*a))*(-1*b/5*a)+(f/a - (b*b*b*b*b)/(5*5*5*5*5*a*a*a*a*a));
+      s = ((-1*pow(b,3))/(125*a*a*a))*w +((b*b)/(25*a*a))*x + y*(-1*b/5*a)+ z;
       if (s<0)
       {
                 cout<<")y-("<<abs(s)<<")";
@@ -732,24 +731,24 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
       cout<<"\n===================================\n";              
       cout<<"\nEntering quarticroot.";
       float k,l,m,n;
-      m = (q!=0)?(9*s + p*q )/(6*q):0;
-      n = ((r/2 - (p*p)/9 + (p/3)*m)/4);
-      l= -1*q/6;
       k = -1*p/3;
+      l= -1*q/6;
+      m = ((s==0)&&(q==0))?0:(9*s + p*q )/(6*q);
+      n = (r/2 - (p*p)/9 + (p/3)*m)/4;
       k = sqrt(k+2*m);
-      quarticroot(1,-1*k,m,-1*l,n);
+      quarticroot(1,(-1*k),m,(-1*l),n);
       cout<<"\nExiting quarticroot.";
       cout<<"\nEntering quinticroot.";
       quinticroot1r = -b/(5*a) - quarticroot1r + quarticroot2r + quarticroot3r + quarticroot4r;
-      quinticroot1c = -b/(5*a) - quarticroot1c + quarticroot2c + quarticroot3c + quarticroot4c;
+      quinticroot1c = - quarticroot1c + quarticroot2c + quarticroot3c + quarticroot4c;
       quinticroot2r = -b/(5*a) + quarticroot1r - quarticroot2r + quarticroot3r + quarticroot4r;
-      quinticroot2c = -b/(5*a) + quarticroot1c - quarticroot2c + quarticroot3c + quarticroot4c;
-      quinticroot3r = -b/(5*a) + quarticroot1r + quarticroot2r - quarticroot3r + quarticroot4r;
-      quinticroot3c = -b/(5*a) + quarticroot1c + quarticroot2c - quarticroot3c + quarticroot4c;
-      quinticroot4r = -b/(5*a) + quarticroot1r + quarticroot2r + quarticroot3r - quarticroot4r;
-      quinticroot4c = -b/(5*a) + quarticroot1c + quarticroot2c + quarticroot3c - quarticroot4c;
+      quinticroot2c = + quarticroot1c - quarticroot2c + quarticroot3c + quarticroot4c;
+      quinticroot3r = -b/(5*a) + quarticroot1r - quarticroot2r - quarticroot3r - quarticroot4r;
+      quinticroot3c = + quarticroot1c - quarticroot2c - quarticroot3c - quarticroot4c;
+      quinticroot4r = -b/(5*a) - quarticroot1r + quarticroot2r - quarticroot3r - quarticroot4r;
+      quinticroot4c = - quarticroot1c + quarticroot2c - quarticroot3c - quarticroot4c;
       quinticroot5r = -b/(5*a) + quarticroot1r - quarticroot2r - quarticroot3r - quarticroot4r;
-      quinticroot5c = -b/(5*a) + quarticroot1c - quarticroot2c - quarticroot3c - quarticroot4c;
+      quinticroot5c =  + quarticroot1c - quarticroot2c - quarticroot3c - quarticroot4c;
       
       cout<<"\nThe five roots are:";
       cout<<"\n Root 1: "<<quinticroot1r<<" + i "<<quinticroot1c;                       
