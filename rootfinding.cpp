@@ -32,10 +32,10 @@ float quarticroot1r,quarticroot2r,quarticroot3r,quarticroot4r,/*the real part of
 float quarticroot(float,float,float,float,float);
 void frameequationquintic(void);
 void inputquintic(void);
-float quintic(float,float,float,float);
+float quintic(float,float,float,float,float);
 float quinticroot1r,quinticroot2r,quinticroot3r,quinticroot4r,quinticroot5r,/*the real part of three cube roots*/ quinticroot1c,quinticroot2c,quinticroot3c,quinticroot4c,quinticroot5c /*the complex part of three cube roots*/;
 //this function is used to find the solution of a quartic equation
-float quinticroot(float,float,float,float,float);
+float quinticroot(float,float,float,float,float,float);
 float con,x1,x2,x3,x4,x5,r1,r2,r3,r4,r5;
 
 int main(void)
@@ -50,8 +50,8 @@ int main(void)
     cout<<"\n2. Find roots for cubic.";
     cout<<"\n3. Frame an equation in biquadratic.";
     cout<<"\n4. Find roots for biquadratic.";
-    cout<<"\n5. Frame an equation in biquadratic.";
-    cout<<"\n6. Find roots for biquadratic.";
+    cout<<"\n5. Frame an equation in quintic.";
+    cout<<"\n6. Find roots for quintic.";
     cout<<"\n7. Find quadratic root of complex number.";
     cout<<"\n8. Find cubic root of complex number.";
     
@@ -75,11 +75,10 @@ int main(void)
                   cout<<"The solution of the quartic equation is\n -b/4a - l - m - n,\n -b/4a +l + m - n,\n -b/4a + l - m + n and \n -b/4a -l + m + n";
                   inputquartic();
                   break;
-                  case 5: cout<<"\nEnter the roots of the quartic (biquadratic) equation.";
+                  case 5: cout<<"\nEnter the roots of the quintic equation.";
                   frameequationquintic();
                   break;
-                  case 6: cout<<"\nInput the constants of the quartic equation.\n ";
-                  cout<<"The solution of the quartic equation is\n -b/4a - l - m - n,\n -b/4a +l + m - n,\n -b/4a + l - m + n and \n -b/4a -l + m + n";
+                  case 6: cout<<"\nInput the constants of the quintic equation.\n ";
                   inputquintic();
                   break;
                   case 7:cout<<"\n";
