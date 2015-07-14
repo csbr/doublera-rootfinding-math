@@ -565,12 +565,30 @@ float quarticroot(float a,float b,float c, float d,float e)
                rtcomp(cuberoot1r,cuberoot1c,1,2);        
                rq41r= real;        
                rq41c= complex;
+               if((rq41r<=0)&&(cuberoot1r>0))
+               {
+               rtcomp(cuberoot1r,cuberoot1c,2,2);        
+               rq41r= real;        
+               rq41c= complex;
+               }
                rtcomp(cuberoot2r,cuberoot2c,1,2);        
                rq42r= real;        
                rq42c= complex;
+               if((rq42r<=0)&&(cuberoot2r>0))
+               {
+               rtcomp(cuberoot2r,cuberoot2c,2,2);        
+               rq42r= real;        
+               rq42c= complex;
+               }
                rtcomp(cuberoot3r,cuberoot3c,1,2);        
                rq43r= real;        
                rq43c= complex;
+               if((rq43r<=0)&&(cuberoot3r>0))
+               {
+               rtcomp(cuberoot3r,cuberoot3c,2,2);        
+               rq43r= real;        
+               rq43c= complex;
+               }
       quarticroot1r = -b/(4*a) - rq41r - rq42r - rq43r;
       quarticroot1c = -rq41c - rq42c - rq43c;
       quarticroot2r = -b/(4*a) -rq41r +rq42r +rq43r;
@@ -685,7 +703,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
        
      cout<<"\n=================================\n";
       cout<<"\nThe reduced equation is ";
-      p = (c/a - 2*b*b/(5*a*a));
+      p = (5*a*c - 2*b*b)/(5*a*a);
       if (p<0)
       {
                 cout<<"\ny^5-("<<abs(p);
@@ -695,7 +713,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                     cout<<"y^5+("<<abs(p);
                     };
       
-      q = (((-3*b/5*a)*(c/a - (2*b*b)/(5*a*a)))+(d/a - (2*b*b*b)/(25*a*a*a)));
+      q = ((25*a*a*d-15*a*b*c + 4*b*b*b)/(25*a*a*a));
       if (q<0)
       {
                 cout<<")y^3-("<<abs(q);
@@ -704,7 +722,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                 {
                     cout<<")y^3+("<<abs(q);
                     };
-      r = (((3*b*b/(25*a*a))*(c/a - (2*b*b)/(5*a*a)))+((-2*b/(5*a))*(d/a - (2*b*b*b)/(25*a*a*a)))+(e/a - (b*b*b*b)/(125*a*a*a*a)));
+      r = (125*a*a*a*e - 50*a*a*b*d + 15*a*b*b*c - 3*b*b*b*b)/(125*a*a*a*a);
       if (r<0)
       {
                 cout<<")y^2-("<<abs(q)<<")";
@@ -713,7 +731,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                 {
                     cout<<")y^2+("<<abs(q)<<")";
                     };
-      s = (((-1*b*b*b)/(125*a*a*a))*(c/a - (2*b*b)/(5*a*a)))+((b*b/(25*a*a))*(d/a - (2*b*b*b)/(25*a*a*a)))+(e/a - (b*b*b*b)/(125*a*a*a*a))*(-1*b/5*a)+(f/a - (b*b*b*b*b)/(5*5*5*5*5*a*a*a*a*a));
+      s = (3125*a*a*a*a*f - 625*a*a*a*b*e + 125*a*a*b*b*d - 25*a*b*b*b*c + 4*b*b*b*b*b)/(3125*a*a*a*a*a);
       if (s<0)
       {
                 cout<<")y-("<<abs(q)<<")";
@@ -725,37 +743,69 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
       
       cout<<"\n===================================\n";              
       cout<<"\nEntering quarticroot.";
-      float k,l,m,n;
-      m = (9*s + p*q )/(6*q);
-      n = (r/2 - (p*p)/9 + (p/3)*m)/4;
-      l= -1*q/6;
-      k = -1*p/3;
-      k = sqrt(k-2*m);
-      quarticroot(1,-1*k,m,-1*l,n);
-      cout<<"\nExiting quarticroot.";
-      cout<<"\nEntering quinticroot.";
-      /*
-               complexrootcompute(cuberoot1r,cuberoot1c,1,2);        
-               rq41r=real;        
-               rq41c=complex;
-               complexrootcompute(cuberoot2r,cuberoot2c,1,2);        
-               rq42r=real;        
-               rq42c=complex;
-               complexrootcompute(cuberoot3r,cuberoot3c,1,2);        
-               rq43r=real;        
-               rq43c=complex;
-               */
-      quinticroot1r = -b/(5*a) - quarticroot1r + quarticroot2r + quarticroot3r + quarticroot4r;
-      quinticroot1c = -b/(5*a) - quarticroot1c + quarticroot2c + quarticroot3c + quarticroot4c;
-      quinticroot2r = -b/(5*a) + quarticroot1r - quarticroot2r + quarticroot3r + quarticroot4r;
-      quinticroot2c = -b/(5*a) + quarticroot1c - quarticroot2c + quarticroot3c + quarticroot4c;
-      quinticroot3r = -b/(5*a) + quarticroot1r + quarticroot2r - quarticroot3r + quarticroot4r;
-      quinticroot3c = -b/(5*a) + quarticroot1c + quarticroot2c - quarticroot3c + quarticroot4c;
-      quinticroot4r = -b/(5*a) + quarticroot1r + quarticroot2r + quarticroot3r - quarticroot4r;
-      quinticroot4c = -b/(5*a) + quarticroot1c + quarticroot2c + quarticroot3c - quarticroot4c;
-      quinticroot5r = -b/(5*a) + quarticroot1r - quarticroot2r - quarticroot3r - quarticroot4r;
-      quinticroot5c = -b/(5*a) + quarticroot1c - quarticroot2c - quarticroot3c - quarticroot4c;
+      double p2,p3,lr,lc,kr=-1,kc,m1r,m1c,m2r,m2c,m3r,m3c;
+      p2 = -p/3;
+      p3 = q/2;
+      lr = p*p-4*r;
+      if(q!=0)
+      {
+          kr = -s/q - p/3;
+      }
+      else
+      {
+          quinticroot5r = 0;
+          quinticroot5c = 0;
+      };
+      if(lr<0)
+      {
+          lc = -lr;
+          lr = 0;
+      };
+      if(lr>=0)
+      {
+          m1r = -p/2 +.5*sqrt(lr);
+          m2r = -p/2 -(.5*sqrt(lr));
+      }
+      if(lr==0)
+      {
+          m1r = -p/2;
+          m1c = .5*sqrt(lc);
+      }
+      if(m1r>=0) {
+          quinticroot1r = -b/(5*a) + sqrt(m1r);
+          quinticroot2r = -b/(5*a) - sqrt(m1r);
+          quinticroot1c=quinticroot2c=0;
+      }
+      if(m2r>=0)
+      {
+          quinticroot3r = -b/(5*a) + sqrt(m2r);
+          quinticroot4r = -b/(5*a) - sqrt(m2r);
+          quinticroot3c=quinticroot4c=0;
+      }
+      if(lr==0)
+      {
+        rtcomp(m1r,m1c,1,2);
+        quinticroot1r = -b/(5*a) + real;
+        quinticroot2r = -b/(5*a) -real;
+        quinticroot1c = complex;
+        quinticroot2c = -complex;
+        rtcomp(m1r,-m1c,1,2);
+        quinticroot1r= -b/(5*a) + real;
+        quinticroot2r= -b/(5*a) - real;
+        quinticroot1c=complex;
+        quinticroot2c=-complex;
+      }
       
+      if(kr>=0)
+      {
+          quinticroot5r = -b/5*a + sqrt(kr);
+          quinticroot5c = 0;
+      }
+      else
+      {
+          quinticroot5r = 0;
+          quinticroot5c = sqrt(-kr);
+      }
       cout<<"\nThe five roots are:";
       cout<<"\n Root 1: "<<quinticroot1r<<" + i "<<quinticroot1c;                       
       cout<<"\n Root 2: "<<quinticroot2r<<" + i "<<quinticroot2c;
