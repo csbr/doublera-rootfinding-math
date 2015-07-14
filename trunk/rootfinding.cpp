@@ -743,17 +743,16 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
       
       cout<<"\n===================================\n";              
       cout<<"\nEntering quarticroot.";
-      double p2,p3,lr,lc,kr=-1,kc,m1r,m1c,m2r,m2c,m3r,m3c;
-      p2 = -p/3;
-      p3 = q/2;
+      double lr,lc,kr=-1,kc,m1r,m1c,m2r,m2c,m3r,m3c;
       lr = p*p-4*r;
       if(q!=0)
       {
-          kr = -s/q - p/3;
+          kr = -s/q;
       }
       else
       {
-          quinticroot5r = 0;
+          kr=0;
+          quinticroot5r = -b/(5*a);
           quinticroot5c = 0;
       };
       if(lr<0)
@@ -761,7 +760,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
           lc = -lr;
           lr = 0;
       };
-      if(lr>=0)
+      if(lr>0)
       {
           m1r = -p/2 +.5*sqrt(lr);
           m2r = -p/2 -(.5*sqrt(lr));
@@ -790,20 +789,20 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
         quinticroot1c = complex;
         quinticroot2c = -complex;
         rtcomp(m1r,-m1c,1,2);
-        quinticroot1r= -b/(5*a) + real;
-        quinticroot2r= -b/(5*a) - real;
-        quinticroot1c=complex;
-        quinticroot2c=-complex;
+        quinticroot3r= -b/(5*a) + real;
+        quinticroot4r= -b/(5*a) - real;
+        quinticroot3c=complex;
+        quinticroot4c=-complex;
       }
       
       if(kr>=0)
       {
-          quinticroot5r = -b/5*a + sqrt(kr);
+          quinticroot5r = -b/(5*a) + sqrt(kr);
           quinticroot5c = 0;
       }
       else
       {
-          quinticroot5r = 0;
+          quinticroot5r = -b/(5*a);
           quinticroot5c = sqrt(-kr);
       }
       cout<<"\nThe five roots are:";
