@@ -20,7 +20,7 @@ void findrootcomplexcubic(void);
 void frameequationcube(void);
 void inputcube(void);
 float cube(float,float,float);
-float cuberoot1r,cuberoot2r,cuberoot3r,/*the real part of three cube roots*/ cuberoot1c,cuberoot2c,cuberoot3c /*the complex part of three cube roots*/;
+float cuberootR[3][2];
 //this function is used to find the solution of a cubic equation
 float cuberoot(float,float,float,float);
 //this function is used to frame a quartic equation from the roots
@@ -381,27 +381,27 @@ float cuberoot(float a, float b,float c,float d)
               cri = crsq*sin(cria/3);
               crconsb = crsq*cos(cria/3);
               crib = -crsq*sin(cria/3);
-              cuberoot1r=(-b/(3*a)) + crcons+crconsb;
-              cuberoot1c=cri+crib;
-              cout<<"\nThe root1 is :"<<cuberoot1r<<" + i "<<cuberoot1c;
+              cuberootR[0][0]=(-b/(3*a)) + crcons+crconsb;
+              cuberootR[0][1]=cri+crib;
+              cout<<"\nThe root1 is :"<<cuberootR[0][0]<<" + i "<<cuberootR[0][1];
              
               crcons2 = -.5*crcons - cri*sqrt(3)/2;
               cri2 = crcons*sqrt(3)/2 - cri/2;
              
               crcons2b = -.5*crconsb + crib*sqrt(3)/2;
               cri2b = -crconsb*sqrt(3)/2 - crib/2;
-              cuberoot2r=(-b/(3*a)) + crcons2+crcons2b;
-              cuberoot2c=cri2+cri2b;
-              cout<<"\nThe root2 is :"<<cuberoot2r<<" + i "<<cuberoot2c;
+              cuberootR[1][0]=(-b/(3*a)) + crcons2+crcons2b;
+              cuberootR[1][1]=cri2+cri2b;
+              cout<<"\nThe root2 is :"<<cuberootR[1][0]<<" + i "<<cuberootR[1][1];
              
               crcons3 = -.5*crcons + cri*sqrt(3)/2;
               cri3 = -crcons*sqrt(3)/2 - cri/2;
              
               crcons3b = -.5*crconsb - crib*sqrt(3)/2;
               cri3b = crconsb*sqrt(3)/2 - crib/2;
-              cuberoot3r=(-b/(3*a)) + crcons3+crcons3b;
-              cuberoot3c=cri3+cri3b;
-              cout<<"\nThe root3 is :"<<cuberoot3r<<" + i "<<cuberoot3c;
+              cuberootR[2][0]=(-b/(3*a)) + crcons3+crcons3b;
+              cuberootR[2][1]=cri3+cri3b;
+              cout<<"\nThe root3 is :"<<cuberootR[2][0]<<" + i "<<cuberootR[2][1];
               
              
       }
@@ -418,27 +418,27 @@ float cuberoot(float a, float b,float c,float d)
               
               crcons = r2;
               crconsb = r3;
-              cuberoot1r=(-b/(3*a)) + crcons+crconsb;
-              cuberoot1c=cri+crib;
-              cout<<"\nThe root1 is :"<<cuberoot1r<<" + i "<<cuberoot1c;
+              cuberootR[0][0]=(-b/(3*a)) + crcons+crconsb;
+              cuberootR[0][1]=cri+crib;
+              cout<<"\nThe root1 is :"<<cuberootR[0][0]<<" + i "<<cuberootR[0][1];
               
               crcons2 = -.5*crcons;
               cri2 = crcons*sqrt(3)/2;
               
               crcons2b = -.5*crconsb;
               cri2b = -crconsb*sqrt(3)/2;
-              cuberoot2r=(-b/(3*a)) + crcons2+crcons2b;
-              cuberoot2c=cri2+cri2b;
-              cout<<"\nThe root2 is :"<<cuberoot2r<<" + i "<<cuberoot2c;
+              cuberootR[1][0]=(-b/(3*a)) + crcons2+crcons2b;
+              cuberootR[1][1]=cri2+cri2b;
+              cout<<"\nThe root2 is :"<<cuberootR[1][0]<<" + i "<<cuberootR[1][1];
               
               crcons3 = -.5*crcons;
               cri3 = -crcons*sqrt(3)/2;
               
               crcons3b = -.5*crconsb;
               cri3b = crconsb*sqrt(3)/2;
-              cuberoot3r=(-b/(3*a)) + crcons3+crcons3b;
-              cuberoot3c=cri3+cri3b;
-              cout<<"\nThe root3 is :"<<cuberoot3r<<" + i "<<cuberoot3c;
+              cuberootR[2][0]=(-b/(3*a)) + crcons3+crcons3b;
+              cuberootR[2][1]=cri3+cri3b;
+              cout<<"\nThe root3 is :"<<cuberootR[2][0]<<" + i "<<cuberootR[2][1];
               
               };
               cout<<"\n==========================\n";
@@ -562,41 +562,53 @@ float quarticroot(float a,float b,float c, float d,float e)
       cout<<"\nExiting cuberoot.";
       cout<<"\nEntering quarticroot.";
       
-               rtcomp(cuberoot1r,cuberoot1c,1,2);        
+               rtcomp(cuberootR[0][0],cuberootR[0][1],1,2);        
                rq41r= real;        
                rq41c= complex;
-               if((rq41r<=0)&&(cuberoot1r>0))
+               if((rq41r<=0)&&(cuberootR[0][0]>0))
                {
-               rtcomp(cuberoot1r,cuberoot1c,2,2);        
+               rtcomp(cuberootR[0][0],cuberootR[0][1],2,2);        
                rq41r= real;        
                rq41c= complex;
                }
-               rtcomp(cuberoot2r,cuberoot2c,1,2);        
+               rtcomp(cuberootR[1][0],cuberootR[1][1],1,2);        
                rq42r= real;        
                rq42c= complex;
-               if((rq42r<=0)&&(cuberoot2r>0))
+               if((rq42r<=0)&&(cuberootR[1][0]>0))
                {
-               rtcomp(cuberoot2r,cuberoot2c,2,2);        
+               rtcomp(cuberootR[1][0],cuberootR[1][1],2,2);        
                rq42r= real;        
                rq42c= complex;
                }
-               rtcomp(cuberoot3r,cuberoot3c,1,2);        
+               rtcomp(cuberootR[2][0],cuberootR[2][1],1,2);        
                rq43r= real;        
                rq43c= complex;
-               if((rq43r<=0)&&(cuberoot3r>0))
+               if((rq43r<=0)&&(cuberootR[2][0]>0))
                {
-               rtcomp(cuberoot3r,cuberoot3c,2,2);        
+               rtcomp(cuberootR[2][0],cuberootR[2][1],2,2);        
                rq43r= real;        
                rq43c= complex;
                }
-      quarticroot1r = -b/(4*a) - rq41r - rq42r - rq43r;
-      quarticroot1c = -rq41c - rq42c - rq43c;
-      quarticroot2r = -b/(4*a) -rq41r +rq42r +rq43r;
-      quarticroot2c = -rq41c +rq42c +rq43c;
-      quarticroot3r = -b/(4*a)+rq41r -rq42r +rq43r;
-      quarticroot3c = +rq41c -rq42c +rq43c;
-      quarticroot4r = -b/(4*a) +rq41r +rq42r -rq43r;
-      quarticroot4c = +rq41c +rq42c -rq43c;
+               if(q>=0){
+                    quarticroot1r = -b/(4*a) - rq41r - rq42r - rq43r;
+                    quarticroot1c = -rq41c - rq42c - rq43c;
+                    quarticroot2r = -b/(4*a) -rq41r +rq42r +rq43r;
+                    quarticroot2c = -rq41c +rq42c +rq43c;
+                    quarticroot3r = -b/(4*a)+rq41r -rq42r +rq43r;
+                    quarticroot3c = +rq41c -rq42c +rq43c;
+                    quarticroot4r = -b/(4*a) +rq41r +rq42r -rq43r;
+                    quarticroot4c = +rq41c +rq42c -rq43c;
+               }
+               if(q<0){
+                    quarticroot1r = -b/(4*a) + rq41r + rq42r + rq43r;
+                    quarticroot1c = +rq41c + rq42c + rq43c;
+                    quarticroot2r = -b/(4*a) -rq41r -rq42r +rq43r;
+                    quarticroot2c = -rq41c -rq42c +rq43c;
+                    quarticroot3r = -b/(4*a)+rq41r -rq42r -rq43r;
+                    quarticroot3c = +rq41c -rq42c -rq43c;
+                    quarticroot4r = -b/(4*a) -rq41r +rq42r -rq43r;
+                    quarticroot4c = -rq41c +rq42c -rq43c;
+               }
       cout<<"\nThe four roots are:";
       cout<<"\n Root 1: "<<quarticroot1r<<" + i "<<quarticroot1c;                       
       cout<<"\n Root 2: "<<quarticroot2r<<" + i "<<quarticroot2c;
@@ -694,11 +706,11 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                     };
      if (e<0)
       {
-                cout<<"x-"<<abs(e);
+                cout<<"x-"<<abs(f);
                 }
                 else
                 {
-                    cout<<"x+"<<abs(e);
+                    cout<<"x+"<<abs(f);
                     };
        
      cout<<"\n=================================\n";
@@ -725,47 +737,55 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
       r = (125*a*a*a*e - 50*a*a*b*d + 15*a*b*b*c - 3*b*b*b*b)/(125*a*a*a*a);
       if (r<0)
       {
-                cout<<")y^2-("<<abs(q)<<")";
+                cout<<")y^2-("<<abs(r)<<")";
                 }
                 else
                 {
-                    cout<<")y^2+("<<abs(q)<<")";
+                    cout<<")y^2+("<<abs(r)<<")";
                     };
       s = (3125*a*a*a*a*f - 625*a*a*a*b*e + 125*a*a*b*b*d - 25*a*b*b*b*c + 4*b*b*b*b*b)/(3125*a*a*a*a*a);
       if (s<0)
       {
-                cout<<")y-("<<abs(q)<<")";
+                cout<<"y-("<<abs(s)<<")";
                 }
                 else
                 {
-                    cout<<")y+("<<abs(q)<<")";
+                    cout<<"y+("<<abs(s)<<")";
                     };
       
       cout<<"\n===================================\n";              
-      cout<<"\nEntering quarticroot.";
-      double lr,lc,kr=-1,kc,m1r,m1c,m2r,m2c,m3r,m3c;
+      double lr,lc=0,kr=1,kc,m1r,m1c,m2r,m2c,m3r,m3c;
       lr = p*p-4*r;
       if(q!=0)
       {
           kr = -s/q;
+      };
+      if(kr==0)
+      {
+          quinticroot5r = -b/(5*a);
+          quinticroot5c = 0;
+      } 
+      else if (kr>0) 
+      {
+          quinticroot5r = -b/(5*a) + sqrt(kr);
+          quinticroot5c = 0;
       }
       else
       {
-          kr=0;
           quinticroot5r = -b/(5*a);
-          quinticroot5c = 0;
+          quinticroot5c = sqrt(-kr);
       };
+      
       if(lr<0)
       {
           lc = -lr;
-          lr = 0;
       };
-      if(lr>0)
+      if(lr>=0)
       {
           m1r = -p/2 +.5*sqrt(lr);
-          m2r = -p/2 -(.5*sqrt(lr));
+          m2r = -p/2 -.5*sqrt(lr);
       }
-      if(lr==0)
+      if(lr<0)
       {
           m1r = -p/2;
           m1c = .5*sqrt(lc);
@@ -781,7 +801,20 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
           quinticroot4r = -b/(5*a) - sqrt(m2r);
           quinticroot3c=quinticroot4c=0;
       }
-      if(lr==0)
+      if(m1r<0) {
+          quinticroot1r = -b/(5*a);
+          quinticroot2r = -b/(5*a);
+          quinticroot1c = sqrt(-m1r);
+          quinticroot2c = -sqrt(-m1r);
+      }
+      if(m2r<0) {
+          quinticroot3r = -b/(5*a);
+          quinticroot4r = -b/(5*a);
+          quinticroot3c = sqrt(-m2r);
+          quinticroot4c = -sqrt(-m2r);
+      }
+      
+      if(lr<0)
       {
         rtcomp(m1r,m1c,1,2);
         quinticroot1r = -b/(5*a) + real;
@@ -795,16 +828,6 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
         quinticroot4c=-complex;
       }
       
-      if(kr>=0)
-      {
-          quinticroot5r = -b/(5*a) + sqrt(kr);
-          quinticroot5c = 0;
-      }
-      else
-      {
-          quinticroot5r = -b/(5*a);
-          quinticroot5c = sqrt(-kr);
-      }
       cout<<"\nThe five roots are:";
       cout<<"\n Root 1: "<<quinticroot1r<<" + i "<<quinticroot1c;                       
       cout<<"\n Root 2: "<<quinticroot2r<<" + i "<<quinticroot2c;
@@ -816,7 +839,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
 
 float rtcomp(float a, float b, int num, int nth)
 {
-     float modulus=0,argument=0,part=0,mod=0;
+     float modulus=0,argument=0,part=0,mod=0,k=0;
      modulus = sqrt(pow(a,2)+pow(b,2));
      if((a==0)&&(b==0))
      {
@@ -827,18 +850,28 @@ float rtcomp(float a, float b, int num, int nth)
      //when both the real and complex is positive or negative
      else
      {
-       b=b/modulus;
+         if(b==0)
+         {
+             k=a/modulus;
+             argument=acos(k);
+         }
+         else
+         {
+             k=b/modulus;
+             argument=asin(k);
+         };
        
-       argument=asin(abs(b));
-       
-       if(a<0&&b>0){
-            argument=PI - asin(abs(b));
+       if(a<=0&&b>=0){
+            argument=PI - argument;
        }
-       if(a>0&&b<0){
-            argument=-asin(abs(b));
+       if(a<=0&&b<=0){
+            argument=PI + argument; 
        }
-       if(a<0&&b<0){
-            argument=PI + asin(abs(b));
+       if(a>=0&&b>=0){
+            argument=argument; 
+       }
+       if(a>=0&&b<=0){
+            argument=argument;
        }
        if(nth==2)
        {
@@ -852,6 +885,6 @@ float rtcomp(float a, float b, int num, int nth)
        real= part * cos((argument+2*(num-1)*PI)/nth);
        complex= part * sin((argument+2*(num-1)*PI)/nth);
        
+       }
      }
     
-}
