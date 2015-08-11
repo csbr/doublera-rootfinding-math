@@ -35,6 +35,7 @@ void inputquintic(void);
 float quintic(float,float,float,float,float);
 float quinticroot1r,quinticroot2r,quinticroot3r,quinticroot4r,quinticroot5r,/*the real part of three cube roots*/ quinticroot1c,quinticroot2c,quinticroot3c,quinticroot4c,quinticroot5c /*the complex part of three cube roots*/;
 //this function is used to find the solution of a quartic equation
+float q5root[5][2];
 float quinticroot(float,float,float,float,float,float);
 float con,x1,x2,x3,x4,x5,r1,r2,r3,r4,r5;
 
@@ -64,15 +65,12 @@ int main(void)
                   frameequationcube();
                   break;
                   case 2: cout<<"\nInput the constants of the cubic equation.\n ";
-                  cout<<"The solution of the cubic equation is -b/3 + l + m,\n -b/3 + (omega)l + (omega)^2 m and \n-b/3 + (omega)^2 l + (omega)m.";
-                  cout<<"\n (omega is the cube roots of unity.\n";
                   inputcube();
                   break;
                   case 3: cout<<"\nEnter the roots of the quartic (biquadratic) equation.";
                   frameequationquartic();
                   break;
                   case 4: cout<<"\nInput the constants of the quartic equation.\n ";
-                  cout<<"The solution of the quartic equation is\n -b/4a - l - m - n,\n -b/4a +l + m - n,\n -b/4a + l - m + n and \n -b/4a -l + m + n";
                   inputquartic();
                   break;
                   case 5: cout<<"\nEnter the roots of the quintic equation.";
@@ -344,10 +342,7 @@ float cuberoot(float a, float b,float c,float d)
       r = pow((q/2),2)+ pow((p/3),3);
       if(r<0)
              {                    
-              cout<<"\ncomplex";
-              cout<<"\nl^3 = "<<(-q/2)<<" +i "<<sqrt(-r);
-              cout<<"\nm^3 = "<<(-q/2)<<" -i "<<sqrt(-r);
-             
+              
               if(-q<0)
               {
                       crcons = q/2;
@@ -365,10 +360,7 @@ float cuberoot(float a, float b,float c,float d)
              
               crconsa = acos(crcons);
               cria = asin(cri);
-              cout<<"\nreal angle ="<<crconsa;
-              cout<<"\ncomplex angle ="<<cria;
-              if (cria == crconsa) cout<<"\nAngle is: "<<cria;
-             
+              
               if(flag==1)
               {
                          crsq = cbrt(-crsq);
@@ -410,11 +402,6 @@ float cuberoot(float a, float b,float c,float d)
               {
               r2 = cbrt((-q/2)+ sqrt(r));
               r3 = cbrt((-q/2)- sqrt(r));
-              
-              cout<<"\nReal";
-              cout<<"\nl = "<<r2;
-              cout<<"\nm = "<<r3;
-              
               
               crcons = r2;
               crconsb = r3;
@@ -704,7 +691,7 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                 {
                     cout<<"x^2+"<<abs(e);
                     };
-     if (e<0)
+     if (f<0)
       {
                 cout<<"x-"<<abs(f);
                 }
@@ -754,87 +741,95 @@ float quinticroot(float a,float b,float c, float d,float e, float f)
                     };
       
       cout<<"\n===================================\n";              
-      double lr,lc=0,kr=1,kc,m1r,m1c,m2r,m2c,m3r,m3c;
-      lr = p*p-4*r;
-      if(q!=0)
+      double sab[2],sabc[2],sa3[2],sa[2],qr[10][2];
+      sab[0] = ((-p/3)+sqrt(p*p/9+2*r/3))/2;
+      sab[1] = ((-p/3)-sqrt(p*p/9+2*r/3))/2;
+      sabc[0] = (-s/6+p*q/24-q*sab[0]/8)/(-p/6+5*sab[0]/2);
+      sabc[1] = (-s/6+p*q/24-q*sab[1]/8)/(-p/6+5*sab[1]/2);
+      sa3[0] = (1/8)*(q+12*sabc[0]);
+      sa3[1] = (1/8)*(q+12*sabc[1]);
+      
+      cout<<"\nEntering cuberoot";
+      cuberoot(1,0,-3*sab[0],3*sabc[0]-sa3[0]);
+      cout<<"\nExiting cuberoot";
+      
+          qr[0][0] = cuberootR[0][0];
+          qr[0][1] = cuberootR[0][1];
+          qr[1][0] = cuberootR[1][0];
+          qr[1][1] = cuberootR[1][1];
+          qr[2][0] = cuberootR[2][0];
+          qr[2][1] = cuberootR[2][1];
+          
+      cout<<"\nEntering cuberoot one more time";
+      cuberoot(1,0,-3*sab[1],3*sabc[1]-sa3[1]);
+      cout<<"\nExiting cuberoot";
+      
+          qr[5][0] = cuberootR[0][0];
+          qr[5][1] = cuberootR[0][1];
+          qr[6][0] = cuberootR[1][0];
+          qr[6][1] = cuberootR[1][1];
+          qr[7][0] = cuberootR[2][0];
+          qr[7][1] = cuberootR[2][1];
+          
+      
+          sa[0] = -p/3+2*sab[0];
+      if (sa[0]<0)
       {
-          kr = -s/q;
-      };
-      if(kr==0)
-      {
-          quinticroot5r = -b/(5*a);
-          quinticroot5c = 0;
-      } 
-      else if (kr>0) 
-      {
-          quinticroot5r = -b/(5*a) + sqrt(kr);
-          quinticroot5c = 0;
+          qr[3][0] = 0;
+          qr[3][1] = sqrt(-sa[0]);
+          qr[4][0] = 0;
+          qr[4][1] = -sqrt(-sa[0]);          
       }
       else
       {
-          quinticroot5r = -b/(5*a);
-          quinticroot5c = sqrt(-kr);
-      };
+          qr[3][0] = sqrt(sa[0]);
+          qr[3][1] = 0;
+          qr[4][0] = -sqrt(sa[0]);
+          qr[4][1] = 0;          
+      }
+          sa[1] = -p/3+2*sab[1];
+      if (sa[1]<0)
+      {
+          qr[8][0] = 0;
+          qr[8][1] = sqrt(-sa[1]);
+          qr[9][0] = 0;
+          qr[9][1] = -sqrt(-sa[1]);          
+      }
+      else
+      {
+          qr[8][0] = sqrt(sa[1]);
+          qr[8][1] = 0;
+          qr[9][0] = -sqrt(sa[1]);
+          qr[9][1] = 0;
+      }
+          
+          
+          for(int i = 0;i<10;i++)
+          {
+              cout<<"\n["<<i<<"] = "<<qr[i][0]<<" + i "<<qr[i][1];
+          }
+      /*
+      q5root[0][0]= -b/(5*a) + quinticroot1r + quinticroot2r + quinticroot3r + quinticroot4r; 
+      q5root[0][1]= + quinticroot1c + quinticroot2c + quinticroot3c + quinticroot4c; 
+      q5root[1][0]= -b/(5*a) + quinticroot5r + quinticroot2r + quinticroot3r + quinticroot4r;
+      q5root[1][1]= + quinticroot5c + quinticroot2c + quinticroot3c + quinticroot4c; 
+      q5root[2][0]= -b/(5*a) + quinticroot1r + quinticroot2r + quinticroot3r + quinticroot5r;
+      q5root[2][1]= + quinticroot1c + quinticroot2c + quinticroot3c + quinticroot5c; 
+      q5root[3][0]= -b/(5*a) + quinticroot1r + quinticroot2r - quinticroot3r - quinticroot5r;
+      q5root[3][1]= + quinticroot1c + quinticroot2c - quinticroot3c - quinticroot5c; 
+      q5root[4][0]= -b/(5*a) + quinticroot5r + quinticroot2r + quinticroot3r - quinticroot4r;
+      q5root[4][1]= + quinticroot5c + quinticroot2c + quinticroot3c - quinticroot4c; 
+      */
       
-      if(lr<0)
-      {
-          lc = -lr;
-      };
-      if(lr>=0)
-      {
-          m1r = -p/2 +.5*sqrt(lr);
-          m2r = -p/2 -.5*sqrt(lr);
-      }
-      if(lr<0)
-      {
-          m1r = -p/2;
-          m1c = .5*sqrt(lc);
-      }
-      if(m1r>=0) {
-          quinticroot1r = -b/(5*a) + sqrt(m1r);
-          quinticroot2r = -b/(5*a) - sqrt(m1r);
-          quinticroot1c=quinticroot2c=0;
-      }
-      if(m2r>=0)
-      {
-          quinticroot3r = -b/(5*a) + sqrt(m2r);
-          quinticroot4r = -b/(5*a) - sqrt(m2r);
-          quinticroot3c=quinticroot4c=0;
-      }
-      if(m1r<0) {
-          quinticroot1r = -b/(5*a);
-          quinticroot2r = -b/(5*a);
-          quinticroot1c = sqrt(-m1r);
-          quinticroot2c = -sqrt(-m1r);
-      }
-      if(m2r<0) {
-          quinticroot3r = -b/(5*a);
-          quinticroot4r = -b/(5*a);
-          quinticroot3c = sqrt(-m2r);
-          quinticroot4c = -sqrt(-m2r);
-      }
       
-      if(lr<0)
-      {
-        rtcomp(m1r,m1c,1,2);
-        quinticroot1r = -b/(5*a) + real;
-        quinticroot2r = -b/(5*a) -real;
-        quinticroot1c = complex;
-        quinticroot2c = -complex;
-        rtcomp(m1r,-m1c,1,2);
-        quinticroot3r= -b/(5*a) + real;
-        quinticroot4r= -b/(5*a) - real;
-        quinticroot3c=complex;
-        quinticroot4c=-complex;
-      }
-      
+      /*
       cout<<"\nThe five roots are:";
-      cout<<"\n Root 1: "<<quinticroot1r<<" + i "<<quinticroot1c;                       
-      cout<<"\n Root 2: "<<quinticroot2r<<" + i "<<quinticroot2c;
-      cout<<"\n Root 3: "<<quinticroot3r<<" + i "<<quinticroot3c;
-      cout<<"\n Root 4: "<<quinticroot4r<<" + i "<<quinticroot4c;
-      cout<<"\n Root 5: "<<quinticroot5r<<" + i "<<quinticroot5c;
-      
+      cout<<"\n Root 1: "<<q5root[0][0]<<" + i "<<q5root[0][1];                       
+      cout<<"\n Root 2: "<<q5root[1][0]<<" + i "<<q5root[1][1];
+      cout<<"\n Root 3: "<<q5root[2][0]<<" + i "<<q5root[2][1];
+      cout<<"\n Root 4: "<<q5root[3][0]<<" + i "<<q5root[3][1];
+      cout<<"\n Root 5: "<<q5root[4][0]<<" + i "<<q5root[4][1];
+      */
 }
 
 float rtcomp(float a, float b, int num, int nth)
@@ -887,4 +882,3 @@ float rtcomp(float a, float b, int num, int nth)
        
        }
      }
-    
